@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device: one
+  data: MyText
+  direction: MyString
+  timestamp: 2025-07-14 20:41:16
+
+two:
+  device: two
+  data: MyText
+  direction: MyString
+  timestamp: 2025-07-14 20:41:16

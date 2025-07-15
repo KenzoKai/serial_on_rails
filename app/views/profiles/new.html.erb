@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">New Profile for <%= @device.name %></h1>
+</div>
+
+<%= form_with(model: [@device, @profile], local: true) do |form| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+      <ul>
+        <% @profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :configurations, 'Configurations (JSON)', class: 'form-label' %>
+    <%= form.text_area :configurations, class: 'form-control', rows: 10 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Profile', class: 'btn btn-primary' %>
+    <%= link_to 'Back to Device', @device, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

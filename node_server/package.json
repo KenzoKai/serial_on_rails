@@ -1,0 +1,13 @@
+{
+  "name": "serial-websocket-server",
+  "version": "1.0.0",
+  "description": "WebSocket server for serial port communication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "serialport": "^10.5.0",
+    "ws": "^8.15.0"
+  }
+}

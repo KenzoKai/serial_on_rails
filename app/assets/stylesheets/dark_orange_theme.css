@@ -1,0 +1,79 @@
+/* Dark Orange Theme - Translated from the original Python application */
+
+:root {
+  --main-bg-color: #1e1e1e;
+  --component-bg-color: #2d2d2d;
+  --primary-accent-color: #ff6b35;
+  --primary-accent-hover-color: #e55a2b;
+  --text-color: #ffffff;
+  --border-color: #404040;
+  --sidebar-bg-color: #252525;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.card {
+  background-color: var(--component-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.card-title, .card-text, h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
+.btn-primary {
+  background-color: var(--component-bg-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.btn-primary:hover {
+  background-color: #3d3d3d;
+  border-color: var(--primary-accent-color);
+}
+
+.btn-success {
+  background-color: var(--primary-accent-color);
+  border-color: var(--primary-accent-color);
+  color: var(--text-color);
+}
+
+.btn-success:hover {
+  background-color: var(--primary-accent-hover-color);
+  border-color: var(--primary-accent-hover-color);
+}
+
+.list-group-item {
+  background-color: var(--component-bg-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.list-group-item a {
+  color: var(--primary-accent-color);
+}
+
+.list-group-item a:hover {
+  color: var(--primary-accent-hover-color);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg-color);
+}
+
+.sidebar .nav-link {
+  color: var(--text-color);
+}
+
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+  color: var(--primary-accent-color);
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
+}

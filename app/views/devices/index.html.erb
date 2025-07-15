@@ -1,0 +1,265 @@
+<div data-controller="simple-serial">
+  <div class="container-fluid px-4 py-3">
+    <!-- Header Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="h2 mb-1 fw-bold">
+              <i class="fas fa-microchip me-2 text-warning"></i>
+              Serial Device Manager
+            </h1>
+            <p class="text-muted mb-0">Manage and monitor your serial devices</p>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <!-- System Status -->
+            <div class="status-indicator">
+              <div class="badge bg-success px-3 py-2 fs-6">
+                <i class="fas fa-server me-1" style="font-size: 0.8em;"></i>
+                System Ready
+              </div>
+            </div>
+            <!-- Connection Status -->
+            <div class="connection-status-compact" id="connection-status-compact">
+              <div class="d-flex align-items-center px-3 py-2 rounded-pill bg-dark border">
+                <div class="status-dot bg-secondary me-2"></div>
+                <span class="status-text small fw-semibold">Not Connected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hidden full alert for JavaScript compatibility -->
+    <div id="connection-status" class="d-none"></div>
+        
+    <!-- Main Content Grid -->
+    <div class="row g-4">
+      <!-- Left Column - Device Management -->
+      <div class="col-lg-8">
+        <!-- Available Ports Section -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-gradient d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-search me-2 text-primary"></i>
+              <h5 class="mb-0 fw-semibold">Available Serial Ports</h5>
+            </div>
+            <button class="btn btn-outline-primary btn-sm px-3" 
+                    data-action="click->simple-serial#refreshPorts">
+              <i class="fas fa-sync-alt me-1"></i> Scan Ports
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row" data-serial-target="availablePorts">
+              <div class="col-12">
+                <div class="text-center py-4">
+                  <i class="fas fa-usb text-muted mb-2" style="font-size: 2rem;"></i>
+                  <p class="text-muted mb-0">Click "Scan Ports" to discover available serial devices</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Device Form -->
+        <div class="card shadow-sm mb-4 d-none" id="new-device-form">
+          <div class="card-header bg-gradient d-flex align-items-center py-3">
+            <i class="fas fa-plus-circle me-2 text-success"></i>
+            <h5 class="mb-0 fw-semibold">Add New Device</h5>
+          </div>
+          <div class="card-body p-4">
+            <form data-simple-serial-target="deviceForm" data-action="submit->simple-serial#saveDevice">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="device-name" class="form-label fw-semibold">
+                      <i class="fas fa-tag me-1 text-muted"></i>Device Name
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="device-name" name="name" 
+                           placeholder="e.g., Arduino Uno, ESP32 Dev Board" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="device-port" class="form-label fw-semibold">
+                      <i class="fas fa-plug me-1 text-muted"></i>Port
+                    </label>
+                    <select class="form-control form-control-lg" id="device-port" name="port" required>
+                      <option value="">Select a port...</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="baud-rate" class="form-label fw-semibold">
+                      <i class="fas fa-tachometer-alt me-1 text-muted"></i>Baud Rate
+                    </label>
+                    <select class="form-control form-control-lg" id="baud-rate" name="baud_rate">
+                      <option value="9600" selected>9600 bps</option>
+                      <option value="19200">19200 bps</option>
+                      <option value="38400">38400 bps</option>
+                      <option value="57600">57600 bps</option>
+                      <option value="115200">115200 bps</option>
+                    </select>
+                  </div>
+                  <div class="row g-2">
+                    <div class="col-4">
+                      <div class="mb-3">
+                        <label for="data-bits" class="form-label fw-semibold small">Data</label>
+                        <select class="form-control" id="data-bits" name="data_bits">
+                          <option value="7">7 bits</option>
+                          <option value="8" selected>8 bits</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="mb-3">
+                        <label for="stop-bits" class="form-label fw-semibold small">Stop</label>
+                        <select class="form-control" id="stop-bits" name="stop_bits">
+                          <option value="1" selected>1 bit</option>
+                          <option value="2">2 bits</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="mb-3">
+                        <label for="parity" class="form-label fw-semibold small">Parity</label>
+                        <select class="form-control" id="parity" name="parity">
+                          <option value="none" selected>None</option>
+                          <option value="even">Even</option>
+                          <option value="odd">Odd</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-outline-secondary px-4" data-action="click->simple-serial#cancelAddDevice">
+                  <i class="fas fa-times me-1"></i> Cancel
+                </button>
+                <button type="submit" class="btn btn-success px-4">
+                  <i class="fas fa-save me-1"></i> Save Device
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Saved Devices Section -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-gradient d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-devices me-2 text-info"></i>
+              <h5 class="mb-0 fw-semibold">Saved Devices</h5>
+            </div>
+            <button class="btn btn-success btn-sm px-3" 
+                    data-action="click->serial#showAddDeviceForm">
+              <i class="fas fa-plus me-1"></i> Add Device
+            </button>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="px-4 py-3">
+                      <i class="fas fa-tag me-2 text-info"></i>Device
+                    </th>
+                    <th class="px-3 py-3">
+                      <i class="fas fa-plug me-2 text-success"></i>Port
+                    </th>
+                    <th class="px-3 py-3">
+                      <i class="fas fa-signal me-2 text-warning"></i>Status
+                    </th>
+                    <th class="px-3 py-3">
+                      <i class="fas fa-cogs me-2 text-primary"></i>Settings
+                    </th>
+                    <th class="px-3 py-3 text-center">
+                      <i class="fas fa-tools me-2 text-secondary"></i>Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody data-simple-serial-target="deviceList">
+                  <tr>
+                    <td colspan="5" class="text-center py-5">
+                      <div class="d-flex flex-column align-items-center">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="text-muted mb-0">Loading devices...</p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Console -->
+      <div class="col-lg-4">
+        <!-- Device Console -->
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-gradient d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-terminal me-2 text-success"></i>
+              <h5 class="mb-0 fw-semibold">Device Console</h5>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-outline-danger btn-sm" 
+                      data-action="click->serial#clearConsole"
+                      title="Clear console">
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" 
+                      data-action="click->serial#toggleAutoScroll"
+                      data-serial-target="autoScrollButton"
+                      title="Toggle auto-scroll">
+                <i class="fas fa-arrow-down"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0 d-flex flex-column" style="height: 500px;">
+            <!-- Console Header -->
+            <div class="px-3 py-2 bg-dark border-bottom">
+              <div class="d-flex align-items-center">
+                <div class="console-dots me-2">
+                  <span class="dot bg-danger me-1" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot bg-warning me-1" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot bg-success" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                </div>
+                <small class="text-light fw-semibold">Serial Terminal</small>
+              </div>
+            </div>
+            <!-- Console Output -->
+            <div class="console-output bg-dark text-white p-3 flex-grow-1 overflow-auto" data-serial-target="mainContent">
+              <div class="d-flex align-items-center text-muted">
+                <i class="fas fa-circle me-2" style="color: #00ff00; font-size: 0.5rem;"></i>
+                <span>Console ready. Connect to a device to see output...</span>
+              </div>
+            </div>
+            <!-- Console Input -->
+            <div class="card-footer bg-dark border-top-0">
+              <div class="input-group">
+                <span class="input-group-text bg-secondary border-0 text-light">
+                  <i class="fas fa-chevron-right"></i>
+                </span>
+                <input type="text" class="form-control border-0" 
+                       placeholder="Type command to send..." 
+                       data-serial-target="commandInput"
+                       data-action="keydown->serial#handleCommandInput"
+                       style="background-color: #2d3748; color: #e2e8f0;">
+                <button class="btn btn-primary border-0" 
+                        data-action="click->serial#sendCommand">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

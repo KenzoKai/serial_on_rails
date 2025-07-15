@@ -1,0 +1,559 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ *
+ *= require dark_orange_theme
+ *= require_tree .
+ *= require_self
+ */
+
+/* Enhanced UI Styles */
+.bg-gradient {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.card {
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(255, 107, 53, 0.2) !important;
+}
+
+/* Console styling */
+.console-output {
+  height: 300px;
+  overflow-y: auto;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background-color: #1a1d23 !important;
+  color: #e2e8f0 !important;
+  line-height: 1.5;
+}
+
+.console-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Fix text contrast on dark backgrounds */
+.bg-dark {
+  color: #f8f9fa !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-muted {
+  color: #adb5bd !important;
+}
+
+/* Ensure console text is readable */
+.console-output .text-muted {
+  color: #cbd5e0 !important;
+}
+
+/* Badge contrast fixes */
+.badge {
+  color: #ffffff !important;
+}
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+/* Enhanced Table Styling */
+.table {
+  color: #e2e8f0 !important;
+  background-color: transparent !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.table th, .table td {
+  color: #e2e8f0 !important;
+  border-color: rgba(64, 64, 64, 0.3) !important;
+  background-color: transparent !important;
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.table thead th {
+  background-color: rgba(45, 55, 72, 0.8) !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid rgba(255, 107, 53, 0.3) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.table thead th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+.table tbody tr {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(64, 64, 64, 0.2) !important;
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 107, 53, 0.06) !important;
+  transform: none;
+  box-shadow: inset 3px 0 0 rgba(255, 107, 53, 0.4);
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.5rem;
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.5rem;
+}
+
+.table-responsive {
+  background-color: transparent !important;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(64, 64, 64, 0.2);
+}
+
+.alert {
+  color: #ffffff !important;
+}
+
+.alert-info {
+  background-color: #17a2b8 !important;
+  border-color: #117a8b !important;
+}
+
+.alert-success {
+  background-color: #28a745 !important;
+  border-color: #1e7e34 !important;
+}
+
+.alert-danger {
+  background-color: #dc3545 !important;
+  border-color: #bd2130 !important;
+}
+
+.alert-warning {
+  background-color: #ffc107 !important;
+  border-color: #d39e00 !important;
+  color: #212529 !important;
+}
+
+/* Enhanced Form controls */
+.form-control {
+  background-color: rgba(45, 45, 45, 0.9) !important;
+  border: 2px solid rgba(64, 64, 64, 0.8) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background-color: rgba(45, 45, 45, 0.95) !important;
+  border-color: #ff6b35 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 107, 53, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+.form-control-lg {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+}
+
+.form-label {
+  color: #e2e8f0 !important;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Button enhancements */
+.btn {
+  transition: all 0.3s ease;
+  border-width: 2px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #218838 0%, #1c9e7c 100%);
+  border-color: #1e7e34;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+  border-color: #0056b3;
+}
+
+.btn-outline-primary {
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ff6b35;
+  border-color: #ff6b35;
+  color: #ffffff;
+}
+
+/* Ensure all text is readable */
+p, div, span, small {
+  color: inherit;
+}
+
+/* Code elements */
+code {
+  background-color: #404040 !important;
+  color: #ff6b35 !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Utility classes */
+.d-none {
+  display: none !important;
+}
+
+/* Enhanced visual effects */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15) !important;
+  transition: all 0.3s ease;
+}
+
+/* Loading spinner enhancement */
+.spinner-border {
+  border-color: rgba(255, 107, 53, 0.3);
+  border-top-color: #ff6b35;
+}
+
+/* Additional Table Enhancements */
+.table-dark th {
+  background-color: #2d3748 !important;
+  border-color: rgba(255, 107, 53, 0.3) !important;
+}
+
+/* Remove duplicate hover effect - handled above */
+
+/* Typography improvements */
+.fw-semibold {
+  font-weight: 600 !important;
+}
+
+.h2 {
+  color: #e2e8f0 !important;
+}
+
+/* Badge improvements */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+}
+
+/* Icon spacing */
+.me-1 {
+  margin-right: 0.25rem !important;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+/* Enhanced Port Card Styling */
+.port-card {
+  border: 2px solid rgba(255, 107, 53, 0.2);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff !important;
+}
+
+.port-card:hover {
+  border-color: rgba(255, 107, 53, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+}
+
+/* USB Device Cards */
+.usb-device-card {
+  border-color: rgba(40, 167, 69, 0.3);
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.9), rgba(40, 167, 69, 0.08));
+}
+
+.usb-device-card:hover {
+  border-color: rgba(40, 167, 69, 0.6);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.15);
+}
+
+/* System Port Cards */
+.system-port-card {
+  border-color: rgba(23, 162, 184, 0.3);
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.9), rgba(23, 162, 184, 0.08));
+}
+
+.system-port-card:hover {
+  border-color: rgba(23, 162, 184, 0.6);
+  box-shadow: 0 8px 20px rgba(23, 162, 184, 0.15);
+}
+
+/* Card text contrast fixes */
+.port-card .card-title {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.port-card .card-body {
+  color: #e2e8f0 !important;
+}
+
+.port-card .card-header {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.port-card small {
+  color: #cbd5e0 !important;
+}
+
+/* Device Icon Container */
+.device-icon-container {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.device-icon-container i {
+  font-size: 1.1rem;
+}
+
+/* Badge enhancements */
+.badge-device-type {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff !important;
+}
+
+/* Text muted override for port cards */
+.port-card .text-muted {
+  color: #9ca3af !important;
+}
+
+/* Availability indicator */
+.availability-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.availability-indicator::after {
+  content: "Available";
+  font-size: 0.7rem;
+  color: #28a745;
+  font-weight: 600;
+}
+
+/* Device details styling */
+.device-details {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  color: #e2e8f0 !important;
+}
+
+.detail-item i {
+  flex-shrink: 0;
+  color: #9ca3af !important;
+}
+
+.detail-item small {
+  color: #e2e8f0 !important;
+}
+
+.detail-item strong {
+  color: #ffffff !important;
+}
+
+/* Device row styling */
+.device-row {
+  transition: all 0.2s ease;
+}
+
+.device-row:hover {
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 107, 53, 0.03) 100%) !important;
+}
+
+/* Compact Status Indicators */
+.connection-status-compact {
+  transition: all 0.3s ease;
+}
+
+.connection-status-compact:hover {
+  transform: scale(1.02);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.bg-success {
+  background-color: #28a745 !important;
+  box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+}
+
+.status-dot.bg-info {
+  background-color: #17a2b8 !important;
+  box-shadow: 0 0 0 0 rgba(23, 162, 184, 0.7);
+}
+
+.status-dot.bg-danger {
+  background-color: #dc3545 !important;
+  box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+}
+
+.status-dot.bg-warning {
+  background-color: #ffc107 !important;
+  box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+}
+
+.status-dot.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+.status-indicator .badge {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.connection-status-compact .border {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.status-text {
+  color: #e2e8f0 !important;
+  min-width: 100px;
+  text-align: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .console-output {
+    height: 250px;
+  }
+  
+  .card:hover, .port-card:hover {
+    transform: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+  }
+  
+  .device-row:hover {
+    transform: none;
+  }
+  
+  .connection-status-compact:hover {
+    transform: none;
+  }
+  
+  /* Stack status indicators on mobile */
+  .d-flex.gap-3 {
+    flex-direction: column;
+    gap: 0.5rem !important;
+    align-items: flex-end;
+  }
+}

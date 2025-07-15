@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Profile: <%= @profile.name %></h1>
+</div>
+
+<div class="card" data-controller="profile serial" data-profile-device-id-value="<%= @device.id %>">
+  <div class="card-body">
+    <h5 class="card-title">Profile for <%= link_to @device.name, @device %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Configurations</h6>
+    <div class="p-3 border rounded bg-light">
+      <% if @profile.configurations && @profile.configurations['widgets'] %>
+        <% @profile.configurations['widgets'].each do |widget| %>
+          <div class="mb-2">
+            <% if widget['type'] == 'label' %>
+              <strong><%= widget['text'] %></strong> <span data-profile-target="value" data-id="<%= widget['id'] %>"><%= widget['value'] %></span>
+            <% elsif widget['type'] == 'button' %>
+              <button class="btn btn-sm btn-outline-primary" data-action="click->profile#send_command" data-command="<%= widget['command'] %>">
+                <%= widget['label'] %>
+              </button>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No widgets configured for this profile.</p>
+      <% end %>
+    </div>
+    <%= link_to 'Back to Device', @device, class: 'btn btn-primary' %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module SerialDataHelper
+end
