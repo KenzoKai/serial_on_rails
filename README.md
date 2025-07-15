@@ -2,6 +2,10 @@
 
 A comprehensive web-based application for managing and monitoring serial communication devices such as Arduino boards, ESP32 modules, sensors, and other USB-Serial devices.
 
+<p>
+<img src="https://github.com/KenzoKai/serial_on_rails/blob/main/serial-on-rails.png?raw=true" />
+</p>
+
 ## 🎯 Overview
 
 The Serial Device Manager provides a modern, intuitive interface for discovering, connecting to, and communicating with serial devices. Built with Ruby on Rails and Node.js, it offers real-time communication capabilities through WebSocket connections and a professional dark-themed user interface.
